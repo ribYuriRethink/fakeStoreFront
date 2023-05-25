@@ -22,6 +22,8 @@ export const Showcase = () => {
       <div className="card_container">
         <Card
           className="showcase_card"
+          imageClass="normal_size"
+          titleClass="title_marginB_normal"
           imageUrl="https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"
           imageAlt="fakestore_image"
           title="product"
@@ -29,6 +31,8 @@ export const Showcase = () => {
         />
         <Card
           className="showcase_card"
+          imageClass="normal_size"
+          titleClass="title_marginB_normal"
           imageUrl="https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"
           imageAlt="fakestore_image"
           title="product"
@@ -36,6 +40,8 @@ export const Showcase = () => {
         />
         <Card
           className="showcase_card"
+          imageClass="normal_size"
+          titleClass="title_marginB_normal"
           imageUrl="https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"
           imageAlt="fakestore_image"
           title="product"

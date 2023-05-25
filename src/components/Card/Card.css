@@ -9,3 +9,18 @@
 .card_description {
     color: #1E1E1E80;
 }
+
+.title_marginB_normal {
+    margin-bottom: 8px;
+}
+.title_marginB_medium {
+    margin-bottom: 12px;
+}
+
+.normal_size {
+    width: 210px;
+}
+
+.large_size {
+    width: 320px;
+}
