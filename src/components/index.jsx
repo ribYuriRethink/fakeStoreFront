@@ -1,7 +1,9 @@
 import { Header } from "./Header/Header";
-import { Home } from "./Home/Home";
-import { Products } from "./Products/Products";
-import { Contacts } from "./Contacts/Contacts";
 import { Footer } from "./Footer/Footer";
+import { Showcase } from "./Showcase/Showcase";
+import { About } from "./About/About";
+import { Categories } from "./Categories/Categories";
+import { Title } from "./Title/Title";
+import { Card } from "./Card/Card";
 
-export { Header, Home, Products, Contacts, Footer };
+export { Header, Footer, Showcase, Categories, About, Title, Card };

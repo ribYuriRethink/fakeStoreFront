@@ -1,9 +1,14 @@
 import "./Home.css";
 
+import { Showcase, About, Categories } from "../../components";
+
 export const Home = () => {
   return (
-    <>
-      <section className="best_selling">
+    <div className="home_container">
+      <Showcase />
+      <About />
+      <Categories />
+      {/* <section className="best_selling">
         <h2>Best Selling Plants</h2>
         <p>Easiest way to healthy life by buying your favorite plants </p>
         <button>See more</button>
@@ -15,7 +20,7 @@ export const Home = () => {
       <section className="categories">
         <h2>Categories</h2>
         <p>Find what you are looking for</p>
-      </section>
-    </>
+      </section> */}
+    </div>
   );
 };

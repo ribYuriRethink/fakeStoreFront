@@ -16,13 +16,19 @@
 
 
 .container_footer button {
-    cursor: pointer;
     background-color: #C1DCDC;
     border-radius: 50%;
     border: 1px solid #1E1E1E80;
-
+    
     width: 48px;
     height: 48px;
+    
+    cursor: pointer;
+    transition: filter 0.2s;
+}
+
+.container_footer button:hover {
+    filter: brightness(0.9);
 }
 
 .container_footer button .social_icon {

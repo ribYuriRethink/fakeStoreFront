@@ -1,6 +1,9 @@
 import "./App.css";
-import { Contacts, Footer, Header, Home, Products } from "./components/index";
+import { Footer, Header } from "./components";
+import { Home, Products, Contacts } from "./screens";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+// npm install axios --save
 
 function App() {
   return (

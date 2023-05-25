@@ -1,0 +1,11 @@
+.card_image {
+    margin-bottom: 12px;
+}
+
+.card_title {
+    font-weight: 700;
+}
+
+.card_description {
+    color: #1E1E1E80;
+}
