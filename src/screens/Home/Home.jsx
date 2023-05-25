@@ -4,7 +4,7 @@ import { Showcase, About, Categories } from "../../components";
 
 export const Home = () => {
   return (
-    <div className="home_container">
+    <main className="home_container">
       <Showcase />
       <About />
       <Categories />
@@ -21,6 +21,6 @@ export const Home = () => {
         <h2>Categories</h2>
         <p>Find what you are looking for</p>
       </section> */}
-    </div>
+    </main>
   );
 };
