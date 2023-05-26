@@ -15,27 +15,24 @@ export const Categories = () => {
       </div>
       <div className="cards_container">
         <Card
-          className="categories_card"
-          imageClass="large_size"
-          imageUrl="https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"
+          className="categories_card categories_size"
+          imageUrl="https://plus.unsplash.com/premium_photo-1668780538503-142b057ab8e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
           imageAlt="fakestore_image"
-          title="product"
+          title="Natural Plants"
         />
         <Card
-          className="categories_card"
-          imageClass="large_size"
+          className="categories_card categories_size"
           titleClass="title_marginB_medium"
-          imageUrl="https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"
+          imageUrl="https://plus.unsplash.com/premium_photo-1668780538503-142b057ab8e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
           imageAlt="fakestore_image"
-          title="product"
+          title="Plant Accessories"
           description="Horem ipsum dolor sit amet, consectetur adipiscing elit."
         />
         <Card
-          className="categories_card"
-          imageClass="large_size"
-          imageUrl="https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"
+          className="categories_card categories_size"
+          imageUrl="https://plus.unsplash.com/premium_photo-1668780538503-142b057ab8e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
           imageAlt="fakestore_image"
-          title="product"
+          title="Artificial Plants"
         />
       </div>
       <button type="button">

@@ -1,5 +1,6 @@
 .card_image {
     margin-bottom: 12px;
+    border-radius: 12px;
 }
 
 .card_title {
@@ -18,9 +19,14 @@
 }
 
 .normal_size {
-    width: 210px;
+    width: 260px;
 }
 
 .large_size {
     width: 320px;
+}
+
+.categories_size {
+    width: 352px;
+    height: 620px;
 }

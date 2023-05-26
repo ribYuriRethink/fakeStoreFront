@@ -9,12 +9,12 @@ export const Card = ({
   title,
   description,
 }) => {
-  const imageClassName = imageClass ? `card_image ${imageClass}` : "card_image";
+  const cardClassName = className ? `normal_size ${className}` : `normal_size`;
   const titleClassName = titleClass ? `card_title ${titleClass}` : "card_title";
 
   return (
-    <div className={className}>
-      <img src={imageUrl} alt={imageAlt} className={imageClassName} />
+    <div className={cardClassName}>
+      <img src={imageUrl} alt={imageAlt} className="card_image" />
       <label className={titleClassName}>{title}</label>
       <label className="card_description">{description}</label>
     </div>
