@@ -3,6 +3,12 @@
     border-radius: 12px;
 }
 
+.image_size_normal {
+    width: 250px;
+    height: 350px;
+    object-fit: contain;
+}
+
 .card_title {
     font-weight: 700;
 }
@@ -18,15 +24,20 @@
     margin-bottom: 12px;
 }
 
-.normal_size {
-    width: 260px;
+.small_size {
+    width: 250px;
 }
 
-.large_size {
-    width: 320px;
+.normal_size {
+    width: 300px;
 }
 
 .categories_size {
     width: 352px;
     height: 620px;
+}
+
+.card_label {
+    display: flex;
+    flex-direction: column;
 }
