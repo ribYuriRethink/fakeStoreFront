@@ -38,11 +38,10 @@
     display: flex;
     justify-content: center;
     gap: 96px;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
 }
 
 .cards_container .categories_card {
-    /* width: 352px; */
     display: flex;
     flex-direction: column;
     text-align: center;

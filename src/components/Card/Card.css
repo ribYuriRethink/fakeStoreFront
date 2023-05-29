@@ -4,7 +4,7 @@
 }
 
 .image_size_normal {
-    width: 250px;
+    width: 300px;
     height: 350px;
     object-fit: contain;
 }
