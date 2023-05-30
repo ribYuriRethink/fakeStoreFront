@@ -21,10 +21,6 @@
     text-transform: uppercase;
 }
 
-.container_logo_pages .logo a {
-    text-decoration: none;
-}
-
 .container_logo_pages ul {
     display: flex;
     list-style: none;
@@ -45,10 +41,6 @@
 .container_profile_cart {
     display: flex;
     gap: 50px;
-}
-
-.container_profile_cart a:link, a:visited{
-    color: black;
 }
 
 .cart_icon {

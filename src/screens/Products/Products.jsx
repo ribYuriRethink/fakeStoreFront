@@ -8,6 +8,7 @@ import {
   getCategories,
   getProductsByCategory,
 } from "../../services/categories";
+import { Link } from "react-router-dom";
 
 export const Products = () => {
   const [products, setProducts] = useState([]);
@@ -86,19 +87,21 @@ export const Products = () => {
         </div>
       </div>
       <div className="product_content_container">
-        <h1>Categories</h1>
+        <h1>Products List</h1>
         <div className="products_cards_container">
           {products.map((product) => (
-            <Card
-              key={product.id}
-              className="product_card"
-              titleClass="title_marginB_normal"
-              imageClass="image_size_normal"
-              imageUrl={product.image}
-              imageAlt={product.title}
-              title={product.title}
-              description={`R$ ${product.price}`}
-            />
+            <Link to={`/products/${product.id}`}>
+              <Card
+                key={product.id}
+                className="product_card"
+                titleClass="title_marginB_normal"
+                imageClass="image_size_normal"
+                imageUrl={product.image}
+                imageAlt={product.title}
+                title={product.title}
+                description={`R$ ${product.price}`}
+              />
+            </Link>
           ))}
         </div>
       </div>
