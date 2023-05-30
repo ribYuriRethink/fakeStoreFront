@@ -11,13 +11,28 @@ export const ProductDetails = () => {
   const [product, setProduct] = useState();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getProductById(id)
       .then((res) => {
         setProduct(res);
-        console.log(res);
       })
       .catch((error) => console.log(error));
   }, []);
+
+  const rate = product?.rating.rate;
+
+  let fullStars = Math.floor(rate);
+  const decimal = rate - fullStars;
+  let emptyStars = Math.floor(5 - rate);
+  let halfStar = 0;
+
+  if (decimal > 0 && decimal < 0.4) {
+    emptyStars++;
+  } else if (decimal >= 0.4 && decimal <= 0.8) {
+    halfStar = 1;
+  } else if (decimal != 0) {
+    fullStars++;
+  }
 
   return (
     <section className="product_details_container">
@@ -36,14 +51,24 @@ export const ProductDetails = () => {
             <div className="details_content">
               <div className="details_header">
                 <p>Marca: {product.category} </p>
-                {/* <p>{product.category}</p> */}
                 <div className="rating">
                   <div className="stars_container">
-                    <BsStarFill className="star" />
-                    <BsStarFill className="star" />
-                    <BsStarFill className="star" />
-                    <BsStarFill className="star" />
-                    <BsStar className="star" />
+                    <p>{product.rating.rate}</p>
+                    {Array(fullStars)
+                      .fill("")
+                      .map(() => (
+                        <BsStarFill className="star" />
+                      ))}
+                    {Array(halfStar)
+                      .fill("")
+                      .map(() => (
+                        <BsStarHalf className="star" />
+                      ))}
+                    {Array(emptyStars)
+                      .fill("")
+                      .map(() => (
+                        <BsStar className="star" />
+                      ))}
                   </div>
                   <p>{product.rating.count} avaliações de clientes</p>
                 </div>

@@ -35,12 +35,19 @@
     font-size: 12px;
 }
 
-.details_header .rating .star {
-    font-size: 20px;
-    color: black;
+.details_header .rating .stars_container {
+    display: flex;
+}
+.details_header .rating .stars_container p {
+    font-size: 16px;
+    margin-right: 5px;
 }
 
-
+.details_header .rating .star {
+    margin-top: 3px;
+    font-size: 20px;
+    color: #FFA41C;
+}
 
 .details_content .descriptions {
     border-bottom: 1px solid #454D4A;
