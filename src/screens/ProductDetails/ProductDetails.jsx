@@ -19,19 +19,23 @@ export const ProductDetails = () => {
       .catch((error) => console.log(error));
   }, []);
 
+  // Definindo as estrelas de rating
   const rate = product?.rating.rate;
 
   let fullStars = Math.floor(rate);
-  const decimal = rate - fullStars;
+  const decimalPart = rate - fullStars;
   let emptyStars = Math.floor(5 - rate);
   let halfStar = 0;
 
-  if (decimal > 0 && decimal < 0.4) {
-    emptyStars++;
-  } else if (decimal >= 0.4 && decimal <= 0.8) {
-    halfStar = 1;
-  } else if (decimal != 0) {
-    fullStars++;
+  if (decimalPart != 0) {
+    // se for 0 rate é um numero natural, logo nao possui parte decimal
+    if (decimalPart > 0.89) {
+      fullStars++;
+    } else if (decimalPart > 0.3) {
+      halfStar = 1;
+    } else {
+      emptyStars++;
+    }
   }
 
   return (
@@ -59,11 +63,7 @@ export const ProductDetails = () => {
                       .map(() => (
                         <BsStarFill className="star" />
                       ))}
-                    {Array(halfStar)
-                      .fill("")
-                      .map(() => (
-                        <BsStarHalf className="star" />
-                      ))}
+                    {halfStar ? <BsStarHalf className="star" /> : <></>}
                     {Array(emptyStars)
                       .fill("")
                       .map(() => (
