@@ -14,6 +14,7 @@ export const Products = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState();
   const [query, setQuery] = useState("");
+  const [selectDisable, setselectDisable] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -70,9 +71,11 @@ export const Products = () => {
           </form>
           <form action="/" className="select_form">
             <select
+              className="select_categories"
               name="select_categories"
               id="select_categories"
               defaultValue="all"
+              disabled={selectDisable}
               onChange={handleSelectSubmit}
             >
               <option value="all">Select a category</option>
