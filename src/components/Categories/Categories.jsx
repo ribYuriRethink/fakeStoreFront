@@ -2,8 +2,31 @@ import "./Categories.css";
 
 import { Card, Title } from "../index";
 import { BsArrowRight } from "react-icons/bs";
+import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getCategories } from "../../services/categories";
+import { getProducts } from "../../services/products";
 
 export const Categories = () => {
+  const [products, setProducts] = useState();
+  const [categories, setCategories] = useState();
+
+  const quantityItens = 3;
+
+  useEffect(() => {
+    getProducts()
+      .then((res) => {
+        setProducts(res);
+      })
+      .catch((error) => console.log(error));
+
+    getCategories()
+      .then((res) => {
+        setCategories(res.slice(0, quantityItens));
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
   return (
     <section className="categories_container">
       <div className="categories_title">
@@ -14,31 +37,32 @@ export const Categories = () => {
         />
       </div>
       <div className="cards_container">
-        <Card
-          className="categories_card categories_size"
-          imageUrl="https://plus.unsplash.com/premium_photo-1668780538503-142b057ab8e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
-          imageAlt="fakestore_image"
-          title="Natural Plants"
-        />
-        <Card
-          className="categories_card categories_size"
-          titleClass="title_marginB_medium"
-          imageUrl="https://plus.unsplash.com/premium_photo-1668780538503-142b057ab8e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
-          imageAlt="fakestore_image"
-          title="Plant Accessories"
-          description="Horem ipsum dolor sit amet, consectetur adipiscing elit."
-        />
-        <Card
-          className="categories_card categories_size"
-          imageUrl="https://plus.unsplash.com/premium_photo-1668780538503-142b057ab8e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
-          imageAlt="fakestore_image"
-          title="Artificial Plants"
-        />
+        {categories?.map((category, index) => {
+          const product = products?.find(
+            (product) => product.category === category
+          );
+          if (product) {
+            return (
+              <Card
+                key={product.id}
+                className="categories_card categories_size"
+                imageClass="categories_image_size"
+                titleClass="card_title"
+                imageUrl={product.image}
+                imageAlt={product.title}
+                title={product.category}
+                description={index == 1 ? product.title : ""}
+              />
+            );
+          }
+        })}
       </div>
-      <button type="button">
-        Explore
-        <BsArrowRight />
-      </button>
+      <NavLink to="/products">
+        <button type="button">
+          Explore
+          <BsArrowRight />
+        </button>
+      </NavLink>
     </section>
   );
 };

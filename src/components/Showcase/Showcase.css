@@ -7,7 +7,8 @@
 }
 
 .description_container {
-    width: 200px;
+    width: 250px;
+    margin-right: 60px;
 }
 
 .description_container .showcase_title  {
@@ -33,15 +34,15 @@
 }
 
 .card_container{
+    width: 100%;
     display: flex;
-    justify-content: space-between;
-    gap: 48px;
+    justify-content: space-around;  
+    /* gap: 80px; */
 }
 
 .showcase_card {
     display: flex;
-    flex-direction: column;
-    padding: 20px;
+    flex-direction: column; 
 }
 
 .showcase_title {

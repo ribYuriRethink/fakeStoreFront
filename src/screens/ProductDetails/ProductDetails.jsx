@@ -9,6 +9,7 @@ import { getProductById } from "../../services/products";
 export const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState();
+  const [stars, setStars] = useState();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -59,8 +60,8 @@ export const ProductDetails = () => {
                   <div className="stars_container">
                     <p>{product.rating.rate}</p>
                     {Array(fullStars)
-                      .fill("")
-                      .map(() => (
+                      .fill()
+                      .map((value) => (
                         <BsStarFill className="star" />
                       ))}
                     {halfStar ? <BsStarHalf className="star" /> : <></>}
@@ -85,14 +86,16 @@ export const ProductDetails = () => {
               </div>
               <div className="details">
                 <table>
-                  <tr>
-                    <th>Produto</th>
-                    <td>{product.title}</td>
-                  </tr>
-                  <tr>
-                    <th>Categoria</th>
-                    <td>{product.category}</td>
-                  </tr>
+                  <tbody>
+                    <tr>
+                      <th>Produto</th>
+                      <td>{product.title}</td>
+                    </tr>
+                    <tr>
+                      <th>Categoria</th>
+                      <td>{product.category}</td>
+                    </tr>
+                  </tbody>
                 </table>
               </div>
             </div>

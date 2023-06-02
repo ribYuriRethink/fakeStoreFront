@@ -13,7 +13,6 @@ import { Link } from "react-router-dom";
 export const Products = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState();
-  // const [selectedCategorie, setSelectedCategorie] = useState();
   const [query, setQuery] = useState("");
 
   const handleSubmit = (e) => {
@@ -29,7 +28,6 @@ export const Products = () => {
     if (e.target.value === "all") {
       getProducts()
         .then((respose) => {
-          console.log(respose);
           setProducts(respose);
         })
         .catch((error) => console.log(error));
@@ -42,16 +40,15 @@ export const Products = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getProducts()
       .then((respose) => {
-        console.log(respose);
         setProducts(respose);
       })
       .catch((error) => console.log(error));
 
     getCategories()
       .then((response) => {
-        console.log(response);
         setCategories(response);
       })
       .catch((error) => console.log(error));
@@ -79,8 +76,10 @@ export const Products = () => {
               onChange={handleSelectSubmit}
             >
               <option value="all">Select a category</option>
-              {categories?.map((categorie) => (
-                <option value={categorie}>{categorie}</option>
+              {categories?.map((categorie, idx) => (
+                <option key={idx} value={categorie}>
+                  {categorie}
+                </option>
               ))}
             </select>
           </form>
@@ -90,7 +89,7 @@ export const Products = () => {
         <h1>Products List</h1>
         <div className="products_cards_container">
           {products.map((product) => (
-            <Link to={`/products/${product.id}`}>
+            <Link key={product.id} to={`/products/${product.id}`}>
               <Card
                 key={product.id}
                 className="product_card"

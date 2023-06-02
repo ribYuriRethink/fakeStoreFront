@@ -19,10 +19,8 @@ export const Card = ({
         alt={imageAlt}
         className={`card_image ${imageClass}`}
       />
-      <div className="card_label">
-        <label className={titleClassName}>{title}</label>
-        <label className="card_description">{description}</label>
-      </div>
+      <label className={titleClassName}>{title}</label>
+      <label className="card_description">{description}</label>
     </div>
   );
 };
