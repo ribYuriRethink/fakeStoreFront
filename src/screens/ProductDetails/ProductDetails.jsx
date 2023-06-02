@@ -9,7 +9,7 @@ import { getProductById } from "../../services/products";
 export const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState();
-  const [stars, setStars] = useState();
+  const stars = [];
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -21,23 +21,33 @@ export const ProductDetails = () => {
   }, []);
 
   // Definindo as estrelas de rating
-  const rate = product?.rating.rate;
+  const setStarsArray = (rate) => {
+    let fullStars = Math.floor(rate);
+    const decimalPart = rate - fullStars;
+    let halfStar = 0;
 
-  let fullStars = Math.floor(rate);
-  const decimalPart = rate - fullStars;
-  let emptyStars = Math.floor(5 - rate);
-  let halfStar = 0;
-
-  if (decimalPart != 0) {
-    // se for 0 rate é um numero natural, logo nao possui parte decimal
-    if (decimalPart > 0.89) {
-      fullStars++;
-    } else if (decimalPart > 0.3) {
-      halfStar = 1;
-    } else {
-      emptyStars++;
+    if (decimalPart != 0) {
+      // se for 0 rate é um numero natural, logo nao possui parte decimal
+      if (decimalPart > 0.89) {
+        fullStars++;
+      } else if (decimalPart > 0.3) {
+        halfStar = 1;
+      }
     }
-  }
+
+    for (let i = 0; i < 5; i++) {
+      if (fullStars > 0) {
+        stars.push(1);
+        fullStars--;
+      } else if (halfStar) {
+        stars.push(0.5);
+      } else {
+        stars.push(0);
+      }
+    }
+  };
+
+  setStarsArray(product?.rating.rate);
 
   return (
     <section className="product_details_container">
@@ -59,17 +69,15 @@ export const ProductDetails = () => {
                 <div className="rating">
                   <div className="stars_container">
                     <p>{product.rating.rate}</p>
-                    {Array(fullStars)
-                      .fill()
-                      .map((value) => (
-                        <BsStarFill className="star" />
-                      ))}
-                    {halfStar ? <BsStarHalf className="star" /> : <></>}
-                    {Array(emptyStars)
-                      .fill("")
-                      .map(() => (
-                        <BsStar className="star" />
-                      ))}
+                    {stars.map((value, index) =>
+                      value === 1 ? (
+                        <BsStarFill key={index} className="star" />
+                      ) : value === 0.5 ? (
+                        <BsStarHalf key={index} className="star" />
+                      ) : (
+                        <BsStar key={index} className="star" />
+                      )
+                    )}
                   </div>
                   <p>{product.rating.count} avaliações de clientes</p>
                 </div>
