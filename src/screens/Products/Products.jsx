@@ -8,7 +8,7 @@ import {
   getCategories,
   getProductsByCategory,
 } from "../../services/categories";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export const Products = () => {
