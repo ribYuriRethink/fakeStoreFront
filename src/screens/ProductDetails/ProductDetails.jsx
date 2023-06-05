@@ -12,7 +12,6 @@ export const ProductDetails = () => {
   const stars = [];
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     getProductById(id)
       .then((res) => {
         setProduct(res);
@@ -41,6 +40,7 @@ export const ProductDetails = () => {
         fullStars--;
       } else if (halfStar) {
         stars.push(0.5);
+        halfStar--;
       } else {
         stars.push(0);
       }

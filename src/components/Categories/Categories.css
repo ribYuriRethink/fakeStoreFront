@@ -19,7 +19,7 @@
     border-radius: 10px;
 
     cursor: pointer;
-    transition: filter 0.2s;
+    transition: filter 0.5s;
 }
 
 .categories_container button:hover{
@@ -38,7 +38,7 @@
     display: flex;
     justify-content: center;
     gap: 96px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 .cards_container .categories_card {

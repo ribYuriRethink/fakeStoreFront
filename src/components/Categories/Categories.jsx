@@ -2,7 +2,7 @@ import "./Categories.css";
 
 import { Card, Title } from "../index";
 import { BsArrowRight } from "react-icons/bs";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getCategories } from "../../services/categories";
 import { getProducts } from "../../services/products";
@@ -43,16 +43,21 @@ export const Categories = () => {
           );
           if (product) {
             return (
-              <Card
+              <Link
                 key={product.id}
-                className="categories_card categories_size"
-                imageClass="categories_image_size"
-                titleClass="card_title"
-                imageUrl={product.image}
-                imageAlt={product.title}
-                title={product.category}
-                description={index == 1 ? product.title : ""}
-              />
+                to={`/products/category/${product.category}`}
+              >
+                <Card
+                  key={product.id}
+                  className="categories_card categories_size"
+                  imageClass="categories_image_size"
+                  titleClass="card_title"
+                  imageUrl={product.image}
+                  imageAlt={product.title}
+                  title={product.category}
+                  description={index == 1 ? product.title : ""}
+                />
+              </Link>
             );
           }
         })}

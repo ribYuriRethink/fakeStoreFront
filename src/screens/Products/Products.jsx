@@ -8,45 +8,94 @@ import {
   getCategories,
   getProductsByCategory,
 } from "../../services/categories";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const Products = () => {
+  const { category } = useParams();
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState();
   const [query, setQuery] = useState("");
-  const [selectDisable, setselectDisable] = useState(false);
+  const [activeCategory, setActiveCategory] = useState(
+    category ? category : ""
+  );
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    searchProducts(query)
-      .then((response) => {
-        setProducts(response);
-      })
-      .catch((error) => console.log(error));
-  };
+  const navigate = useNavigate();
 
-  const handleSelectSubmit = (e) => {
-    if (e.target.value === "all") {
-      getProducts()
-        .then((respose) => {
-          setProducts(respose);
-        })
-        .catch((error) => console.log(error));
-      return;
-    }
-    e.preventDefault();
-    getProductsByCategory(e.target.value)
-      .then((response) => setProducts(response))
-      .catch((error) => console.log(error));
-  };
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
+  const callGetProducts = () => {
     getProducts()
       .then((respose) => {
         setProducts(respose);
       })
       .catch((error) => console.log(error));
+
+    navigate("/products", { replace: true });
+  };
+
+  const callGetProductsByCategory = (category) => {
+    getProductsByCategory(category)
+      .then((response) => setProducts(response))
+      .catch((error) => console.log(error));
+
+    navigate(`/products/category/${category}`, { replace: true });
+  };
+
+  const searchProductService = (query) => {
+    searchProducts(query)
+      .then((response) => setProducts(response))
+      .catch((error) => console.log(error));
+
+    navigate(`/products/search/?query=${query}`, { replace: true });
+  };
+
+  const searchInProductsByCategory = () => {
+    getProductsByCategory(category)
+      .then((response) =>
+        setProducts(
+          response.filter((product) =>
+            product.title.toLowerCase().includes(query)
+          )
+        )
+      )
+      .catch((error) => console.log(error));
+
+    navigate(`/products/category/${activeCategory}/search/?query=${query}`);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (activeCategory) {
+      query
+        ? searchInProductsByCategory(query)
+        : callGetProductsByCategory(activeCategory);
+      return;
+    }
+
+    if (query) {
+      searchProductService(query);
+    } else {
+      navigate("/products", { replace: true });
+      callGetProducts();
+    }
+  };
+
+  const handleSelectSubmit = (e) => {
+    const category = e.target.value;
+    if (category === "") {
+      callGetProducts();
+      setActiveCategory("");
+      return;
+    }
+    e.preventDefault();
+    callGetProductsByCategory(category);
+    setActiveCategory(category);
+  };
+
+  useEffect(() => {
+    activeCategory
+      ? callGetProductsByCategory(activeCategory)
+      : callGetProducts();
 
     getCategories()
       .then((response) => {
@@ -59,26 +108,25 @@ export const Products = () => {
     <section className="products_container">
       <div className="search_bars">
         <div className="forms_container">
-          <form action="/" onSubmit={handleSubmit}>
+          <form id="searching_product" action="/" onSubmit={handleSubmit}>
             <input
               type="text"
               placeholder="Looking for a product?"
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={(e) => setQuery(e.target.value.toLowerCase())}
             />
             <button type="submit">
               <BsSearch />
             </button>
           </form>
-          <form action="/" className="select_form">
+          <form id="select_category" action="/" className="select_form">
             <select
               className="select_categories"
               name="select_categories"
               id="select_categories"
-              defaultValue="all"
-              disabled={selectDisable}
+              value={activeCategory}
               onChange={handleSelectSubmit}
             >
-              <option value="all">Select a category</option>
+              <option value="">Select a category</option>
               {categories?.map((categorie, idx) => (
                 <option key={idx} value={categorie}>
                   {categorie}
